@@ -243,9 +243,9 @@ end;
 
 procedure TframePedidoVenda.ExecutarPesquisa;
 begin
-  TPedidoVenda
-   .New
-    .Open(dsConsulta);
+  FContPedVenda := TControllerPedidoVenda
+                    .New
+                    .Open(dsConsulta);
 end;
 
 procedure TframePedidoVenda.FrameResize(Sender: TObject);

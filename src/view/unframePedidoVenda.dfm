@@ -7,8 +7,6 @@
     end
   end
   inherited pnCentral: TPanel
-    ExplicitLeft = 152
-    ExplicitTop = 32
     inherited pnCadastro: TPanel
       inherited pnBotoesForm: TPanel
         Top = 472
@@ -337,7 +335,6 @@
           ParentBackground = False
           ParentFont = False
           TabOrder = 1
-          ExplicitTop = 200
           DesignSize = (
             751
             48)
@@ -506,7 +503,6 @@
           ParentBackground = False
           ParentFont = False
           TabOrder = 5
-          ExplicitTop = 0
         end
         object Panel3: TPanel
           Left = 1
@@ -654,7 +650,7 @@
           Left = 580
           Top = 89
           Width = 131
-          Height = 29
+          Height = 28
           Color = clWhite
           EditLabel.Width = 128
           EditLabel.Height = 20
@@ -675,7 +671,7 @@
           Left = 32
           Top = 159
           Width = 134
-          Height = 29
+          Height = 28
           Color = clWhite
           EditLabel.Width = 78
           EditLabel.Height = 20
@@ -697,7 +693,7 @@
           Left = 171
           Top = 159
           Width = 134
-          Height = 29
+          Height = 28
           Color = clWhite
           EditLabel.Width = 71
           EditLabel.Height = 20
@@ -832,7 +828,8 @@
     SQL.Strings = (
       
         'select p.numeropedido, p.dataemissao, p.codigocliente, p.valorto' +
-        'tal, c.nome, (CONVERT(c.codigo,char)||'#39' - '#39'||c.nome) as CLIENTE'
+        'tal, c.nome, CONCAT(CONVERT(c.codigo, char),'#39' - '#39',c.nome) as CLI' +
+        'ENTE'
       'from pedido_dados_gerais p'
       'left outer join clientes c on(c.codigo = p.codigocliente)'
       'order by p.dataemissao ')
@@ -955,6 +952,7 @@
       FieldName = 'codigo'
       Origin = 'codigo'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object FDPesquisaClientenome: TStringField
       FieldName = 'nome'

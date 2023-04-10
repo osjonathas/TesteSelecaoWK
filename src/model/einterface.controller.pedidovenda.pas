@@ -17,6 +17,10 @@ uses Data.DB,
     function ValorTotalPedido(Value: Currency) :iContPedidoVenda; overload;
     function ValorTotalPedido: Currency;overload;
 
+    function PedidoVenda(Value: iPedidoVenda) :iContPedidoVenda; overload;
+    function PedidoVenda: iPedidoVenda;overload;
+
+    function Open(aDataSource : TDataSource):iContPedidoVenda; overload;
     function ColocarEmEstadoInclusao:iContPedidoVenda;
     function IncluirPedidoVenda(aMemTableItens: TFDMemTable):iContPedidoVenda;
   end;

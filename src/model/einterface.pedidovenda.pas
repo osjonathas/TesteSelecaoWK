@@ -17,9 +17,6 @@ uses Data.DB,
 
     function ValorTotal(Value: Currency) :iPedidoVenda; overload;
     function ValorTotal: Currency; overload;
-
-    function Open(aDataSource : TDataSource):iPedidoVenda; overload;
-    function getPedido(aCodigo:integer):iPedidoVenda; overload;
   end;
 
 

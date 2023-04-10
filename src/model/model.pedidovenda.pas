@@ -28,9 +28,6 @@ interface
 
      function ValorTotal(Value: Currency) :iPedidoVenda; overload;
      function ValorTotal: Currency; overload;
-
-     function Open(aDataSource : TDataSource):iPedidoVenda; overload;
-     function getPedido(aCodigo:integer):iPedidoVenda; overload;
    end;
 
 implementation
@@ -98,40 +95,4 @@ begin
   Result := FValorTotal;
 end;
 
-function TPedidoVenda.Open(aDataSource : TDataSource): iPedidoVenda;
-begin
-  try
-    FFDQuery.Close;
-    FFDQuery.Connection := connection.FDConnection;
-    FFDQuery.Sql.Clear;
-    FFDQuery.Sql.Add(' SELECT p.numeropedido, p.dataemissao, p.codigocliente, p.valortotal, c.nome, (CONVERT(c.codigo,char)||'+QuotedStr(' - ')+'||c.nome) as CLIENTE');
-    FFDQuery.Sql.Add(' FROM pedido_dados_gerais p');
-    FFDQuery.Sql.Add(' left outer join clientes c on(c.codigo = p.codigocliente)');
-    FFDQuery.Open();
-    aDataSource.DataSet := FFDQuery;
-    Result := self;
-
-  except on E: Exception do
-    raise;
-  end;
-end;      
-
-function TPedidoVenda.getPedido(aCodigo: integer): iPedidoVenda;
-begin
-  try
-    FFDQuery.Close;
-    FFDQuery.Connection := connection.FDConnection;
-    FFDQuery.Sql.Clear;
-    FFDQuery.Sql.Add(' SELECT codigo, login, senha');
-    FFDQuery.Sql.Add(' FROM Funcionarios');
-    FFDQuery.Open();
-    if not FFDQuery.IsEmpty then
-    begin
-      Self.NumeroPedido(FFDQuery.FieldByName('codigo').AsInteger);
-    end;
-    Result := self;
-  finally
-
-  end;
-end;
 end.

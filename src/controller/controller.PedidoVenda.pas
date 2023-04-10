@@ -12,6 +12,7 @@ interface
      FCodigoCliente : integer;
      FEstadoPedido  : TEstado;
      FValorTotalPedido  : Currency;
+     FPedidoVenda   :iPedidoVenda;
 
      function getUltimoNumero:integer;
    public
@@ -31,6 +32,11 @@ interface
 
      function ValorTotalPedido(Value: Currency) :iContPedidoVenda; overload;
      function ValorTotalPedido: Currency;overload;
+
+     function PedidoVenda(Value: iPedidoVenda) :iContPedidoVenda; overload;
+     function PedidoVenda: iPedidoVenda;overload;
+
+     function Open(aDataSource : TDataSource):iContPedidoVenda; overload;
 
      function ColocarEmEstadoInclusao:iContPedidoVenda;
      function IncluirPedidoVenda(aMemTableItens: TFDMemTable):iContPedidoVenda;
@@ -167,6 +173,36 @@ end;
 function TControllerPedidoVenda.NumeroPedido: integer;
 begin
   Result:= FNumeroPedido;
+end;
+
+function TControllerPedidoVenda.Open(aDataSource: TDataSource): iContPedidoVenda;
+begin
+  try
+    FFDQuery.Close;
+    FFDQuery.Connection := connection.FDConnection;
+    FFDQuery.Sql.Clear;
+    FFDQuery.Sql.Add(' SELECT p.numeropedido, p.dataemissao, p.codigocliente, p.valortotal, c.nome, CONCAT(CONVERT(c.codigo, char),'+QuotedStr(' - ')+',c.nome) as CLIENTE ');
+    FFDQuery.Sql.Add(' FROM pedido_dados_gerais p');
+    FFDQuery.Sql.Add(' left outer join clientes c on(c.codigo = p.codigocliente)');
+    FFDQuery.Open();
+    aDataSource.DataSet := FFDQuery;
+    Result := self;
+
+  except on E: Exception do
+    raise;
+  end;
+
+end;
+
+function TControllerPedidoVenda.PedidoVenda: iPedidoVenda;
+begin
+  Result := FPedidoVenda;
+end;
+
+function TControllerPedidoVenda.PedidoVenda(Value: iPedidoVenda): iContPedidoVenda;
+begin
+  Result := Self;
+  FPedidoVenda := Value;
 end;
 
 function TControllerPedidoVenda.ValorTotalPedido: Currency;
