@@ -1,0 +1,99 @@
+unit model.produto;
+
+interface
+  uses classes, System.StrUtils, System.SysUtils, Data.DB, FireDAC.Comp.Client, einterface.produto;
+
+ type
+   TProduto = class(TInterfacedObject, iProduto)
+   private
+     FFDQuery : TFDQuery;
+     FCodigo: integer;
+     FDescricao : String;
+     FPrecoVenda : Currency;
+   public
+     Constructor Create;
+     Destructor Destroy; override;
+
+     class function New:iProduto;
+
+     function Codigo(Value: integer) :iProduto; overload;
+     function Codigo :integer; overload;
+
+     function Descricao(Value: String) :iProduto; overload;
+     function Descricao: String; overload;
+
+     function PrecoVenda(Value: Currency) :iProduto; overload;
+     function PrecoVenda: Currency; overload;
+
+     function Open(aDataSource : TDataSource):iProduto; overload;
+     function getProduto:iProduto; overload;
+   end;
+
+implementation
+
+uses model.connection;
+
+function TProduto.Codigo(Value: integer): iProduto;
+begin
+  Result := Self;
+  FCodigo := Value;
+end;
+
+function TProduto.Codigo: integer;
+begin
+  Result := FCodigo;
+end;
+
+constructor TProduto.Create;
+begin
+  FFDQuery := TFDQuery.Create(nil);
+end;
+
+function TProduto.Descricao: String;
+begin
+  Result := FDescricao;
+end;
+
+destructor TProduto.Destroy;
+begin
+
+end;
+
+function TProduto.Descricao(Value: String): iProduto;
+begin
+  Result := Self;
+  FDescricao := Value;
+end;
+
+function TProduto.FPrecoVenda: Currency;
+begin
+  Result := FPrecoVenda;
+end;
+
+function TProduto.getProduto: iProduto;
+begin
+
+end;
+
+class function TProduto.New: iCliente;
+begin
+  Result := Self.Create;
+end;
+
+function TProduto.Open(aDataSource: TDataSource): iProduto;
+begin
+
+end;
+
+function TProduto.PrecoVenda(Value: Currency): iProduto;
+begin
+  Result:= Self;
+  FPrecoVenda := Value;
+end;
+
+function TProduto.PrecoVenda: Currency;
+begin
+  Result := FPrecoVenda;
+end;
+
+end.

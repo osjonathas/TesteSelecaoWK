@@ -1,0 +1,24 @@
+unit einterface.produto;
+
+interface
+uses Data.DB,
+     System.Classes;
+  type
+  iProduto = interface
+  ['{B7FC8A29-B6AB-4579-86E3-94951D15396B}']
+  function Codigo(Value: integer) :iProduto; overload;
+  function Codigo :integer; overload;
+
+  function Descricao(Value: String) :iProduto; overload;
+  function Descricao: String; overload;
+
+  function PrecoVenda(Value: Currency) :iProduto; overload;
+  function PrecoVenda: Currency; overload;
+
+  function Open(aDataSource : TDataSource):iProduto; overload;
+  function getProduto:iProduto; overload;
+  end;
+
+implementation
+
+end.

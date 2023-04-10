@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/05/02 15:25:51.000.242,=C:\Users\Jonathas Souza\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2022/05/02 15:26:37.000.592,=C:\Users\Jonathas Souza\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2023/01/04 06:33:48.000.764,=C:\Users\Jonathas Souza\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/04/07 21:07:12.000.274,=C:\Users\Jonathas Souza\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/04/08 15:38:05.000.449,=C:\Users\Jonathas Souza\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/04/08 15:39:40.000.578,C:\Users\Jonathas Souza\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projetos\Publicos\TesteSelecaoWK\PedidoDeVendas.dproj</Transaction>
+    <Transaction>2023/04/08 16:02:36.000.695,=D:\Projetos\Publicos\TesteSelecaoWK\src\view\uPrincipal.pas</Transaction>
+    <Transaction>2023/04/08 16:03:04.000.376,=D:\Projetos\Publicos\TesteSelecaoWK\src\view\uframeCadastroBase.pas</Transaction>
+    <Transaction>2023/04/08 16:03:15.000.484,=D:\Projetos\Publicos\TesteSelecaoWK\src\view\unfraPesquisa.pas</Transaction>
+    <Transaction>2023/04/08 16:03:42.000.221,=D:\Projetos\Publicos\TesteSelecaoWK\src\view\uframeCadUsuario.pas</Transaction>
+    <Transaction>2023/04/08 16:06:43.000.816,=D:\Projetos\Publicos\TesteSelecaoWK\src\model\UnClasseSistema.pas</Transaction>
+    <Transaction>2023/04/08 16:07:28.000.181,=D:\Projetos\Publicos\TesteSelecaoWK\src\view\ufrmLogin.pas</Transaction>
+    <Transaction>2023/04/08 16:15:06.000.245,=D:\Projetos\Publicos\TesteSelecaoWK\src\model\connection\model.connection.pas</Transaction>
+    <Transaction>2023/04/08 16:15:25.000.307,=D:\Projetos\Publicos\TesteSelecaoWK\src\KrUtil.pas</Transaction>
+    <Transaction>2023/04/08 16:15:33.000.774,=D:\Projetos\Publicos\TesteSelecaoWK\src\KrConstantes.pas</Transaction>
+    <Transaction>2023/04/08 16:20:36.000.372,=D:\Projetos\Publicos\TesteSelecaoWK\src\view\UnMensagem.pas</Transaction>
+    <Transaction>2023/04/08 16:20:36.000.078,=D:\Projetos\Publicos\TesteSelecaoWK\src\view\UnitPergunta.pas</Transaction>
+    <Transaction>2023/04/08 16:21:35.000.322,=D:\Projetos\Publicos\TesteSelecaoWK\src\model\model.usuario.pas</Transaction>
+    <Transaction>2023/04/08 16:21:35.000.292,=D:\Projetos\Publicos\TesteSelecaoWK\src\model\einterface.usuario.pas</Transaction>
+    <Transaction>2023/04/09 19:35:00.000.452,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/09 20:19:19.000.080,D:\Projetos\Publicos\TesteSelecaoWK\Unit1.dfm=D:\Projetos\Publicos\TesteSelecaoWK\src\view\unframePedidoVenda.dfm</Transaction>
+    <Transaction>2023/04/09 20:19:19.000.080,D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas=D:\Projetos\Publicos\TesteSelecaoWK\src\view\unframePedidoVenda.pas</Transaction>
+    <Transaction>2023/04/09 20:31:27.000.411,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/09 20:32:40.000.837,D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas=D:\Projetos\Publicos\TesteSelecaoWK\src\model\einterface.pedidovenda.pas</Transaction>
+    <Transaction>2023/04/09 20:35:05.000.467,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/09 20:35:36.000.883,D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas=D:\Projetos\Publicos\TesteSelecaoWK\src\model\model.pedidovenda.pas</Transaction>
+    <Transaction>2023/04/10 08:16:25.000.928,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 08:17:43.000.959,D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas=D:\Projetos\Publicos\TesteSelecaoWK\src\classes\controller.PedidoVenda.pas</Transaction>
+    <Transaction>2023/04/10 08:20:08.156,=D:\Projetos\Publicos\TesteSelecaoWK\src\controller\controller.PedidoVenda.pas</Transaction>
+    <Transaction>2023/04/10 08:20:32.447,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 08:21:51.067,D:\Projetos\Publicos\TesteSelecaoWK\src\model\einterface.controllerpedidovenda.pas=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 08:26:28.891,D:\Projetos\Publicos\TesteSelecaoWK\src\model\einterface.controller.pedidovenda.pas=D:\Projetos\Publicos\TesteSelecaoWK\src\model\einterface.controllerpedidovenda.pas</Transaction>
+    <Transaction>2023/04/10 10:43:40.605,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 10:46:02.449,D:\Projetos\Publicos\TesteSelecaoWK\src\model\einterface.cliente.pas=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 10:46:30.441,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 10:47:20.641,D:\Projetos\Publicos\TesteSelecaoWK\src\model\model.cliente.pas=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 12:08:22.055,D:\Projetos\Publicos\TesteSelecaoWK\src\KrConstantes.pas=</Transaction>
+    <Transaction>2023/04/10 13:26:59.520,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 13:29:20.531,D:\Projetos\Publicos\TesteSelecaoWK\src\model\einterface.produto.pas=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 13:30:00.120,=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+    <Transaction>2023/04/10 13:31:05.108,D:\Projetos\Publicos\TesteSelecaoWK\src\model\model.produto.pas=D:\Projetos\Publicos\TesteSelecaoWK\Unit1.pas</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+</BorlandProject>

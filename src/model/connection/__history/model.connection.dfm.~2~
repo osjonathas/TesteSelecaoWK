@@ -1,0 +1,28 @@
+object Connection: TConnection
+  OnCreate = DataModuleCreate
+  Height = 480
+  Width = 640
+  object FDQuery: TFDQuery
+    Left = 176
+    Top = 48
+  end
+  object FDGUIxWaitCursor: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 216
+    Top = 152
+  end
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=bancoselecaowk'
+      'User_Name=root'
+      'Password=masterkey'
+      'DriverID=MySQL')
+    LoginPrompt = False
+    Left = 32
+    Top = 32
+  end
+  object FDPhysMySQLDriverLink: TFDPhysMySQLDriverLink
+    Left = 64
+    Top = 144
+  end
+end

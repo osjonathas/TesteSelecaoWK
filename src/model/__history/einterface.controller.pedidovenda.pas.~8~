@@ -1,0 +1,22 @@
+unit einterface.controller.pedidovenda;
+
+interface
+uses Data.DB,
+     System.Classes,
+     einterface.pedidovenda;
+  type
+  iControllerPedidoVenda = interface
+    ['{CFA8BEC6-C35F-4CA4-99E8-714F9775C73D}']
+    function NumeroPedido(Value: integer) :iControllerPedidoVenda; overload;
+    function NumeroPedido: integer;overload;
+
+    function PedidoVenda(Value: iPedidoVenda) :iControllerPedidoVenda; overload;
+    function PedidoVenda: iPedidoVenda; overload;
+
+    function ColocarEmEstadoInclusao:iControllerPedidoVenda;
+  end;
+
+
+implementation
+
+end.
