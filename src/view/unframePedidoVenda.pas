@@ -288,8 +288,7 @@ end;
 procedure TframePedidoVenda.edtQuantidadeKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
-  if ((key in ['0'..'9'] = false) and (key <> #13)) then
-    key := #0;
+  if not (CharInSet(Key,['0'..'9',#8, #13])) then key := #0;
 
   if KEY = #13 then
     edtValorTotal.SetFocus;

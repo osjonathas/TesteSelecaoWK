@@ -82,6 +82,7 @@ type
     procedure edtQuantidadeExit(Sender: TObject);
     procedure btn_RemoverItemClick(Sender: TObject);
     procedure gridPesquisaDblClick(Sender: TObject);
+    procedure edtQuantidadeEnter(Sender: TObject);
   private
     { Private declarations }
   public
@@ -128,7 +129,7 @@ begin
 
   if Assigned(FProduto) then
   begin
-    edtValorTotal.Text := FormatFloat(',0.00', FProduto.PrecoVenda * StrToFloat(edtQuantidade.Text));
+    edtValorTotal.Text := FormatFloat(',0.00', FProduto.PrecoVenda * StrToExt(edtQuantidade.Text));
   end;
 end;
 
@@ -234,8 +235,8 @@ begin
     FDMemTableItens.FieldByName('CodigoProduto').AsInteger := FProduto.Codigo;
     FDMemTableItens.FieldByName('Descricao').AsString      := FProduto.Descricao;
     FDMemTableItens.FieldByName('VlrUnitario').AsFloat     := FProduto.PrecoVenda;
-    FDMemTableItens.FieldByName('Quantidade').AsFloat      := StrToFloat(edtQuantidade.Text);
-    FDMemTableItens.FieldByName('VlrTotal').AsFloat        := StrToFloat(edtValorTotal.Text);
+    FDMemTableItens.FieldByName('Quantidade').AsFloat      := StrToExt(edtQuantidade.Text);
+    FDMemTableItens.FieldByName('VlrTotal').AsFloat        := StrToExt(edtValorTotal.Text);
     FDMemTableItens.Post;
 
     AtualizarTotalPedido;
@@ -271,6 +272,13 @@ begin
     CarregarDadosProduto;
 end;
 
+procedure TframePedidoVenda.edtQuantidadeEnter(Sender: TObject);
+begin
+  inherited;
+  edtQuantidade.Text := '1';
+  edtQuantidade.SelectAll;
+end;
+
 procedure TframePedidoVenda.edtQuantidadeExit(Sender: TObject);
 begin
   inherited;
@@ -280,6 +288,8 @@ end;
 procedure TframePedidoVenda.edtQuantidadeKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
+  if not (CharInSet(Key,['0'..'9',#8, #13]) then key := #0;
+
   if KEY = #13 then
     edtValorTotal.SetFocus;
 end;

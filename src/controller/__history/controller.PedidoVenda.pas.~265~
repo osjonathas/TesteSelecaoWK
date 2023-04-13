@@ -247,48 +247,29 @@ begin
   aTransacao := TFDTransaction.Create(nil);
   aQry := TFDQuery.Create(nil);
   try
-    aTransacao.Connection := Connection.FDConnection;
-    aQry.Connection := Connection.FDConnection;
-    FormatSettings.DecimalSeparator := '.';
-
-    aQry.Close;
-    aQry.Sql.Clear;
-    aQry.Sql.Add(' Select from  ');
-    aQry.Sql.Add(' from clientes ');
-    aQry.Sql.Add(' Where codigo = '+IntToStr(FCodigoCliente));
-    aQry.Open;
-
-    FCliente := TCliente.New;
-    FCliente.Codigo(aQry.FieldByName('codigo').AsInteger);
-    FCliente.Nome(aQry.FieldByName('nome').AsString);
-    Result := Self;
-
-
-
-
-  finally
-
-
-
-
-  end;
     try
+      aTransacao.Connection := Connection.FDConnection;
+      aQry.Connection := Connection.FDConnection;
       aTransacao.StartTransaction;
+      FormatSettings.DecimalSeparator := '.';
 
-    try
       aQry.Close;
       aQry.Sql.Clear;
-      aQry.Sql.Add(' Select codigo, nome');
-      aQry.Sql.Add(' from clientes ');
-      aQry.Sql.Add(' Where codigo = '+IntToStr(FCodigoCliente));
-      aQry.Open;
+      aQry.Sql.Add(' Delete from produtos_do_pedido ');
+      aQry.Sql.Add(' Where numeropedido = '+IntToStr(FNumeroPedido));
+      aQry.ExecSQL;
 
-      FCliente := TCliente.New;
-      FCliente.Codigo(aQry.FieldByName('codigo').AsInteger);
-      FCliente.Nome(aQry.FieldByName('nome').AsString);
+      aQry.Close;
+      aQry.Sql.Clear;
+      aQry.Sql.Add(' Delete from pedido_dados_gerais ');
+      aQry.Sql.Add(' Where numeropedido = '+IntToStr(FNumeroPedido));
+      aQry.ExecSQL;
+
+      aTransacao.CommitRetaining;
       Result := Self;
     except on E: Exception do
       begin
+        aTransacao.RollbackRetaining;
         raise Exception.Create(mProblemasNaExecucaoDaConsulta+E.Message);
       end;
     end;

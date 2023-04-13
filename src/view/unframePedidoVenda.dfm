@@ -7,7 +7,113 @@
     end
   end
   inherited pnCentral: TPanel
-    inherited pnCadastro: TPanel [0]
+    inherited pnConsulta: TPanel
+      inherited pn_imprimirRel: TPanel [0]
+      end
+      inherited pn_Importar: TPanel [1]
+      end
+      inherited gridPesquisa: TDBGrid [2]
+        DataSource = dsConsulta
+        OnDblClick = gridPesquisaDblClick
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'numeropedido'
+            Title.Caption = 'N'#186' do Pedido'
+            Width = 88
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'dataemissao'
+            Title.Caption = 'Data de Emiss'#227'o'
+            Width = 113
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'CLIENTE'
+            Title.Caption = 'Cliente'
+            Width = 456
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'valortotal'
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Valor Total'
+            Width = 122
+            Visible = True
+          end>
+      end
+      inherited pn_IncluirNovo: TPanel [3]
+        inherited btIncluir: TSpeedButton
+          Caption = 'Incluir Pedido'
+        end
+      end
+      inherited pnResultado: TPanel [4]
+        Caption = 'Resultado  (clique duplo no registro para alter'#225'-lo)'
+      end
+      inherited fraPesquisa: TfraPesquisa [5]
+        Height = 34
+        ExplicitHeight = 34
+        inherited pnFiltros: TPanel
+          Height = 3
+          ExplicitHeight = 3
+          inherited lbPeríodo1: TLabel
+            Top = 84
+            Width = 54
+            Caption = 'Emiss'#227'o'
+            ExplicitTop = 84
+            ExplicitWidth = 54
+          end
+          inherited dtPeriodoIni: TDateTimePicker
+            Top = 81
+            ExplicitTop = 81
+          end
+          inherited dtPeriodoFim: TDateTimePicker
+            Top = 81
+            ExplicitTop = 81
+          end
+          inherited pn_PesqFiltro: TPanel
+            Left = 512
+            Top = -86
+            ExplicitLeft = 512
+            ExplicitTop = -86
+            inherited brPesqFiltro: TSpeedButton
+              ExplicitTop = 200
+            end
+          end
+          inherited edtValor1: TLabeledEdit
+            Top = 36
+            EditLabel.Width = 90
+            EditLabel.Caption = 'Nome do Cliente'
+            EditLabel.ExplicitTop = 18
+            EditLabel.ExplicitWidth = 90
+            TextHint = 'INFORME NOME DO CLIENTE'
+            ExplicitTop = 36
+          end
+          inherited edtValor2: TLabeledEdit
+            Top = 202
+            EditLabel.ExplicitTop = 184
+            Visible = False
+            ExplicitTop = 202
+          end
+          inherited edtValor3: TLabeledEdit
+            Top = 247
+            EditLabel.ExplicitTop = 229
+            Visible = False
+            ExplicitTop = 247
+          end
+          inherited rgFiltro: TRadioGroup
+            Top = 270
+            Visible = False
+            ExplicitTop = 270
+          end
+        end
+      end
+    end
+    inherited pnCadastro: TPanel
       object pnCabecalho: TPanel [0]
         Left = 1
         Top = 1
@@ -201,7 +307,9 @@
           Height = 26
           Align = alTop
           BevelOuter = bvNone
-          Caption = #205'tens do Pedido'
+          Caption = 
+            #205'tens do Pedido  (Obs: para alterar o '#237'tem exclua-o e insira nov' +
+            'amente)'
           Color = 12615680
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
@@ -477,7 +585,7 @@
       end
       object pnInserirItens: TPanel
         Left = 184
-        Top = 77
+        Top = 157
         Width = 753
         Height = 282
         Caption = #39
@@ -710,115 +818,10 @@
           EditLabel.Font.Style = []
           EditLabel.ParentColor = False
           EditLabel.ParentFont = False
+          ReadOnly = True
           TabOrder = 4
           Text = ''
           OnKeyPress = edtValorTotalKeyPress
-        end
-      end
-    end
-    inherited pnConsulta: TPanel [1]
-      inherited pn_imprimirRel: TPanel [0]
-      end
-      inherited pn_Importar: TPanel [1]
-      end
-      inherited gridPesquisa: TDBGrid [2]
-        DataSource = dsConsulta
-        OnDblClick = gridPesquisaDblClick
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'numeropedido'
-            Title.Caption = 'N'#186' do Pedido'
-            Width = 88
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'dataemissao'
-            Title.Caption = 'Data de Emiss'#227'o'
-            Width = 113
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'CLIENTE'
-            Title.Caption = 'Cliente'
-            Width = 456
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'valortotal'
-            Title.Alignment = taRightJustify
-            Title.Caption = 'Valor Total'
-            Width = 122
-            Visible = True
-          end>
-      end
-      inherited pn_IncluirNovo: TPanel [3]
-        inherited btIncluir: TSpeedButton
-          Caption = 'Incluir Pedido'
-        end
-      end
-      inherited pnResultado: TPanel [4]
-        Caption = 'Resultado  (clique duplo no registro para alter'#225'-lo)'
-      end
-      inherited fraPesquisa: TfraPesquisa [5]
-        Height = 34
-        ExplicitHeight = 34
-        inherited pnFiltros: TPanel
-          Height = 3
-          ExplicitHeight = 3
-          inherited lbPeríodo1: TLabel
-            Top = 84
-            Width = 54
-            Caption = 'Emiss'#227'o'
-            ExplicitTop = 84
-            ExplicitWidth = 54
-          end
-          inherited dtPeriodoIni: TDateTimePicker
-            Top = 81
-            ExplicitTop = 81
-          end
-          inherited dtPeriodoFim: TDateTimePicker
-            Top = 81
-            ExplicitTop = 81
-          end
-          inherited pn_PesqFiltro: TPanel
-            Left = 512
-            Top = -86
-            ExplicitLeft = 512
-            ExplicitTop = -86
-            inherited brPesqFiltro: TSpeedButton
-              ExplicitTop = 200
-            end
-          end
-          inherited edtValor1: TLabeledEdit
-            Top = 36
-            EditLabel.Width = 90
-            EditLabel.Caption = 'Nome do Cliente'
-            EditLabel.ExplicitTop = 18
-            EditLabel.ExplicitWidth = 90
-            TextHint = 'INFORME NOME DO CLIENTE'
-            ExplicitTop = 36
-          end
-          inherited edtValor2: TLabeledEdit
-            Top = 202
-            EditLabel.ExplicitTop = 184
-            Visible = False
-            ExplicitTop = 202
-          end
-          inherited edtValor3: TLabeledEdit
-            Top = 247
-            EditLabel.ExplicitTop = 229
-            Visible = False
-            ExplicitTop = 247
-          end
-          inherited rgFiltro: TRadioGroup
-            Top = 270
-            Visible = False
-            ExplicitTop = 270
-          end
         end
       end
     end

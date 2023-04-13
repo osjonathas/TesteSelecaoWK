@@ -314,7 +314,6 @@ end;
 
 class function TControllerPedidoVenda.getDescricaoProduto(aCodigoProduto: integer): string;
 var aQry : TFDQuery;
-    aItemPedido : iProduto_do_Pedido;
 begin
   try
     aQry := TFDQuery.Create(nil);
