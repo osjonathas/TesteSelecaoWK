@@ -81,6 +81,8 @@ type
     procedure btn_AplicarItemClick(Sender: TObject);
     procedure edtQuantidadeExit(Sender: TObject);
     procedure btn_RemoverItemClick(Sender: TObject);
+    procedure gridPesquisaDblClick(Sender: TObject);
+    procedure edtQuantidadeEnter(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,7 +91,10 @@ type
     FProduto : iProduto;
     procedure ExecutarPesquisa; override;
     procedure ColocarEmEstadoInclusao; override;
+    procedure ColocarEmEstadoEdicao;override;
+    procedure CarregarRegistroPesquisa(AValor: String); override;
     procedure Persistir; override;
+    procedure Excluir; override;
 
     procedure LimparDadosPedido;
     procedure LimparDadosItens;
@@ -119,9 +124,12 @@ uses
 
 procedure TframePedidoVenda.CalcularTotarItem;
 begin
+  if edtQuantidade.Text = EmptyStr then
+    edtQuantidade.Text := '1';
+
   if Assigned(FProduto) then
   begin
-    edtValorTotal.Text := FormatFloat(',0.00', FProduto.PrecoVenda * StrToFloat(edtQuantidade.Text));
+    edtValorTotal.Text := FormatFloat(',0.00', FProduto.PrecoVenda * StrToExt(edtQuantidade.Text));
   end;
 end;
 
@@ -155,6 +163,49 @@ begin
   end;
 end;
 
+procedure TframePedidoVenda.CarregarRegistroPesquisa(AValor: String);
+var I : integer;
+begin
+  inherited;
+  ColocarEmEstadoEdicao;
+  FContPedVenda := TControllerPedidoVenda
+                    .New
+                    .NumeroPedido(StrToInt(aValor))
+                     .getPedidoVenda;
+
+  edtNumeroPedido.Text := IntToStr(FContPedVenda.NumeroPedido);
+  edtDataEmissao.Date  := FContPedVenda.PedidoVenda.DataEmissao;
+  edtCliente.Text      := IntToStr(FContPedVenda.Cliente.Codigo)+' - '+FContPedVenda.Cliente.Nome;
+
+  if assigned(FContPedVenda.ItensPedido) then
+  begin
+    FDMemTableItens.Close;
+    FDMemTableItens.Open;
+    for I:=0 to Pred(FContPedVenda.ItensPedido.Count) do
+    begin
+      FDMemTableItens.AppendRecord([FContPedVenda.ItensPedido[I].NumeroPedido,
+                                    FContPedVenda.ItensPedido[I].Codigo,
+                                    FContPedVenda.ItensPedido[I].Quantidade,
+                                    FContPedVenda.ItensPedido[I].ValorUnitario,
+                                    FContPedVenda.ItensPedido[I].Total,
+                                    TControllerPedidoVenda.getDescricaoProduto(FContPedVenda.ItensPedido[I].Codigo)]);
+    end;
+    AtualizarTotalPedido;
+  end;
+end;
+
+procedure TframePedidoVenda.ColocarEmEstadoEdicao;
+begin
+  inherited;
+  LimparDadosPedido;
+  if assigned(FContPedVenda) then
+  begin
+    edtNumeroPedido.Text := IntToStr(FContPedVenda.NumeroPedido);
+    edtNumeroPedido.Enabled := False;
+    edtCliente.SetFocus;
+  end;
+end;
+
 procedure TframePedidoVenda.ColocarEmEstadoInclusao;
 begin
   inherited;
@@ -184,8 +235,8 @@ begin
     FDMemTableItens.FieldByName('CodigoProduto').AsInteger := FProduto.Codigo;
     FDMemTableItens.FieldByName('Descricao').AsString      := FProduto.Descricao;
     FDMemTableItens.FieldByName('VlrUnitario').AsFloat     := FProduto.PrecoVenda;
-    FDMemTableItens.FieldByName('Quantidade').AsFloat      := StrToFloat(edtQuantidade.Text);
-    FDMemTableItens.FieldByName('VlrTotal').AsFloat        := StrToFloat(edtValorTotal.Text);
+    FDMemTableItens.FieldByName('Quantidade').AsFloat      := StrToExt(edtQuantidade.Text);
+    FDMemTableItens.FieldByName('VlrTotal').AsFloat        := StrToExt(edtValorTotal.Text);
     FDMemTableItens.Post;
 
     AtualizarTotalPedido;
@@ -221,6 +272,13 @@ begin
     CarregarDadosProduto;
 end;
 
+procedure TframePedidoVenda.edtQuantidadeEnter(Sender: TObject);
+begin
+  inherited;
+  edtQuantidade.Text := '1';
+  edtQuantidade.SelectAll;
+end;
+
 procedure TframePedidoVenda.edtQuantidadeExit(Sender: TObject);
 begin
   inherited;
@@ -230,6 +288,9 @@ end;
 procedure TframePedidoVenda.edtQuantidadeKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
+  if ((key in ['0'..'9'] = false) and (key <> #13)) then
+    key := #0;
+
   if KEY = #13 then
     edtValorTotal.SetFocus;
 end;
@@ -239,6 +300,29 @@ begin
   inherited;
   if KEY = #13 then
     btn_AplicarItem.Click;
+end;
+
+procedure TframePedidoVenda.Excluir;
+begin
+  if assigned(FContPedVenda) then
+  begin
+    if not TfrmPergunta.Pergunta(mPerguntaExclusao, tmPergunta) then
+      exit;
+
+    TControllerPedidoVenda
+     .New
+     .NumeroPedido(StrToInt(edtNumeroPedido.Text))
+      .ExcluirPedido;
+
+    TFrmMensagem.ExibirMensagem('Pedido excluido com sucesso!', tmInfo);
+    LimparDadosPedido;
+    FInclusao := False;
+    FEdicao   := False;
+    pnConsulta.Visible := True;
+    pnCadastro.Visible := False;
+    pnConsulta.BringToFront;
+    inherited;
+  end;
 end;
 
 procedure TframePedidoVenda.ExecutarPesquisa;
@@ -252,6 +336,12 @@ procedure TframePedidoVenda.FrameResize(Sender: TObject);
 begin
   inherited;
   fraPesquisa.FTamMax := 197;
+end;
+
+procedure TframePedidoVenda.gridPesquisaDblClick(Sender: TObject);
+begin
+  inherited;
+  CarregarRegistroPesquisa(dsConsulta.DataSet.FieldByName('NumeroPedido').AsString);
 end;
 
 procedure TframePedidoVenda.ChamarInserirItem;
@@ -309,9 +399,10 @@ begin
     AtualizarTotalPedido;
     try
       if FInclusao then
-      begin
-        FContPedVenda.IncluirPedidoVenda(FDMemTableItens);
-      end;
+        FContPedVenda.IncluirPedidoVenda(FDMemTableItens)
+      else if FEdicao then
+        FContPedVenda.AlterarPedidoVenda(FDMemTableItens);
+
       TFrmMensagem.ExibirMensagem('Pedido gravado com sucesso!', tmInfo);
       inherited;
 
@@ -343,7 +434,6 @@ begin
   pnConsultaCliente.Enabled := False;
   pnConsultaCliente.Visible := False;
   pnConsultaCliente.SendToBack;
-  FDMemTableItens.Close;
 end;
 
 procedure TframePedidoVenda.btn_incluirItemClick(Sender: TObject);

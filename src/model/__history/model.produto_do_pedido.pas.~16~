@@ -1,0 +1,98 @@
+unit model.produto_do_pedido;
+
+interface
+ uses classes, System.StrUtils, System.SysUtils, Data.DB, FireDAC.Comp.Client, einterface.produto_do_pedido;
+
+ type
+   TProduto_do_Pedido = class(TInterfacedObject, iProduto_do_Pedido)
+   private
+     FFDQuery : TFDQuery;
+     FNumeroPedido : integer;
+     FCodigo: integer;
+     FQuantidade : Currency;
+     FValorUnitario : Currency;
+     FTotal : Currency;
+   public
+     Constructor Create;
+     Destructor Destroy; override;
+
+     class function New:iProduto_do_Pedido;
+
+     function NumeroPedido(Value: integer) :iProduto_do_Pedido; overload;
+     function NumeroPedido :integer; overload;
+
+     function Codigo(Value: integer) :iProduto_do_Pedido; overload;
+     function Codigo :integer; overload;
+
+     function Descricao(Value: String) :iProduto_do_Pedido; overload;
+     function Descricao: String; overload;
+
+     function PrecoVenda(Value: Currency) :iProduto_do_Pedido; overload;
+     function PrecoVenda: Currency; overload;
+   end;
+
+implementation
+
+{ TProduto_do_Pedido }
+
+uses model.connection;
+
+constructor TProduto_do_Pedido.Create;
+begin
+  FFDQuery := TFDQuery.Create(nil);
+end;
+
+destructor TProduto_do_Pedido.Destroy;
+begin
+
+end;
+
+class function TProduto_do_Pedido.New: iProduto_do_Pedido;
+begin
+  Result := Self.Create;
+end;
+
+function TProduto_do_Pedido.NumeroPedido: integer;
+begin
+  Result := FNumeroPedido;
+end;
+
+function TProduto_do_Pedido.NumeroPedido(Value: integer): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FNumeroPedido := Value;
+end;
+
+function TProduto_do_Pedido.Codigo(Value: integer): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FCodigo := Value;
+end;
+
+function TProduto_do_Pedido.Codigo: integer;
+begin
+  Result := FCodigo;
+end;
+
+function TProduto_do_Pedido.PrecoVenda(Value: Currency): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FPrecoVenda := Value;
+end;
+
+function TProduto_do_Pedido.PrecoVenda: Currency;
+begin
+  Result := FPrecoVenda;
+end;
+
+function TProduto_do_Pedido.Descricao(Value: String): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FDescricao := Value;
+end;
+
+function TProduto_do_Pedido.Descricao: String;
+begin
+  Result := FDescricao;
+end;
+end.

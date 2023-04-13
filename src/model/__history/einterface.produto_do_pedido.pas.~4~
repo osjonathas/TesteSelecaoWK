@@ -1,0 +1,25 @@
+unit einterface.produto_do_pedido;
+
+interface
+uses Data.DB,
+     System.Classes;
+  type
+  iProduto_do_Pedido = interface
+  ['{C92134C8-1654-4D98-B27A-B1C6CDCDC128}']
+
+  function Codigo(Value: integer) :iProduto_do_Pedido; overload;
+  function Codigo :integer; overload;
+
+  function Codigo(Value: integer) :iProduto_do_Pedido; overload;
+  function Codigo :integer; overload;
+
+  function Descricao(Value: String) :iProduto_do_Pedido; overload;
+  function Descricao: String; overload;
+
+  function PrecoVenda(Value: Currency) :iProduto_do_Pedido; overload;
+  function PrecoVenda: Currency; overload;
+
+ end;
+implementation
+
+end.

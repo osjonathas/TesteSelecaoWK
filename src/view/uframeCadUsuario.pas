@@ -37,6 +37,7 @@ type
     FDConsultacodigo: TFDAutoIncField;
     FDConsultalogin: TStringField;
     FDConsultasenha: TStringField;
+    procedure gridPesquisaDblClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -69,7 +70,7 @@ end;
 procedure TframeCadUsuario.CarregarRegistroPesquisa(AValor: String);
 begin
   inherited;
-
+  
 end;
 
 procedure TframeCadUsuario.ColocarEmEstadoEdicao;
@@ -97,6 +98,12 @@ begin
    .Login(trim(fraPesquisa.edtvalor.Text))
     .Open(dsConsulta);
   inherited;
+end;
+
+procedure TframeCadUsuario.gridPesquisaDblClick(Sender: TObject);
+begin
+  inherited;
+  CarregarRegistroPesquisa(dsConsulta.DataSet.FieldByName('NumerPedido').AsString);
 end;
 
 procedure TframeCadUsuario.Persistir;

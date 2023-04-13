@@ -4,7 +4,10 @@ interface
 uses Data.DB,
      System.Classes,
      FireDAC.Comp.Client,
-     einterface.pedidovenda;
+     einterface.pedidovenda,
+     einterface.cliente,
+     einterface.produto_do_pedido,
+     generics.Collections;
   type
   iContPedidoVenda = interface
     ['{B3A48BEF-A34B-48CD-A004-72B6E3F6CCAF}']
@@ -20,9 +23,17 @@ uses Data.DB,
     function PedidoVenda(Value: iPedidoVenda) :iContPedidoVenda; overload;
     function PedidoVenda: iPedidoVenda;overload;
 
+    function ItensPedido(Value: TList<iProduto_do_Pedido>) :iContPedidoVenda; overload;
+    function ItensPedido: TList<iProduto_do_Pedido>;overload;
+
+    function Cliente(Value: iCliente) :iContPedidoVenda; overload;
+    function Cliente: iCliente;overload;
+    function getPedidoVenda:iContPedidoVenda; overload;
     function Open(aDataSource : TDataSource):iContPedidoVenda; overload;
     function ColocarEmEstadoInclusao:iContPedidoVenda;
     function IncluirPedidoVenda(aMemTableItens: TFDMemTable):iContPedidoVenda;
+    function AlterarPedidoVenda(aMemTableItens: TFDMemTable):iContPedidoVenda;
+    function ExcluirPedido:iContPedidoVenda;
   end;
 
 

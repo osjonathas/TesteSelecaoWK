@@ -54,23 +54,6 @@ implementation
 uses UnMensagem, KrUtil, uPrincipal;
 
 { TfrmLogin }
-procedure Arredondarcantos(componente: TWinControl; Y:String);
-var
-   BX: TRect;
-   mdo: HRGN;
-begin
-  with componente do
-  begin
-    BX := ClientRect;
-    mdo := CreateRoundRectRgn(BX.Left, BX.Top, BX.Right,
-    BX.Bottom, StrToInt(Y), StrToInt(Y)) ;
-    Perform(EM_GETRECT, 0, lParam(@BX)) ;
-    InflateRect(BX, - 4, - 4) ;
-    Perform(EM_SETRECTNP, 0, lParam(@BX)) ;
-    SetWindowRgn(Handle, mdo, True) ;
-    Invalidate;
-  end;
-end;
 
 procedure TfrmLogin.btConfirmarClick(Sender: TObject);
 begin
@@ -114,7 +97,7 @@ end;
 procedure TfrmLogin.FormShow(Sender: TObject);
 begin
   CentralizarPainelLogin(frmLogin, pnLogin);
-  Arredondarcantos(pnLogin, '25');
+  lbVersao.Caption := 'versão 2023.4.2';
 end;
 
 procedure TfrmLogin.btFecharClick(Sender: TObject);
@@ -147,7 +130,7 @@ begin
 
   if aOpcaoValida = ovSenha then
   begin
-    if (Assigned(FUsuario) and (edtSenha.Text <> FUsuario.Senha))then
+    if (Assigned(FUsuario) and (UpperCase(edtSenha.Text) <> UpperCase(FUsuario.Senha)))then
     begin
       TFrmMensagem.ExibirMensagem('Senha inválida.', tmPare);
       Exit;

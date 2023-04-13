@@ -43,6 +43,7 @@ type
     procedure gridPesquisaDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure btCancelaClick(Sender: TObject);
     procedure btConfirmaClick(Sender: TObject);
+    procedure btExcluiClick(Sender: TObject);
   private
     FNomeTabela: String;
     FCampoControle: String;
@@ -86,6 +87,11 @@ end;
 procedure TframeCadastroBase.btConfirmaClick(Sender: TObject);
 begin
   Persistir;
+end;
+
+procedure TframeCadastroBase.btExcluiClick(Sender: TObject);
+begin
+  Excluir;
 end;
 
 procedure TframeCadastroBase.btIncluirClick(Sender: TObject);

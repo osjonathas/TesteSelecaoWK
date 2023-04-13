@@ -1,0 +1,120 @@
+unit model.produto_do_pedido;
+
+interface
+ uses classes, System.StrUtils, System.SysUtils, Data.DB, FireDAC.Comp.Client, einterface.produto_do_pedido;
+
+ type
+   TProduto_do_Pedido = class(TInterfacedObject, iProduto_do_Pedido)
+   private
+     FFDQuery : TFDQuery;
+     FNumeroPedido : integer;
+     FCodigo: integer;
+     FQuantidade : Currency;
+     FValorUnitario : Currency;
+     FTotal : Currency;
+//    function PrecoVenda(Value: Currency): iProduto_do_Pedido;
+   public
+     Constructor Create;
+     Destructor Destroy; override;
+
+     class function New:iProduto_do_Pedido;
+
+     function NumeroPedido(Value: integer) :iProduto_do_Pedido; overload;
+     function NumeroPedido :integer; overload;
+
+     function Codigo(Value: integer) :iProduto_do_Pedido; overload;
+     function Codigo :integer; overload;
+
+     function ValorUnitario(Value: Currency) :iProduto_do_Pedido; overload;
+     function ValorUnitario: Currency; overload;
+
+     function Quantidade(Value: Currency) :iProduto_do_Pedido; overload;
+     function Quantidade: Currency; overload;
+
+     function Total(Value: Currency) :iProduto_do_Pedido; overload;
+     function Total: Currency; overload;
+   end;
+
+implementation
+
+{ TProduto_do_Pedido }
+
+uses model.connection;
+
+constructor TProduto_do_Pedido.Create;
+begin
+  FFDQuery := TFDQuery.Create(nil);
+end;
+
+destructor TProduto_do_Pedido.Destroy;
+begin
+
+end;
+
+class function TProduto_do_Pedido.New: iProduto_do_Pedido;
+begin
+  Result := Self.Create;
+end;
+
+function TProduto_do_Pedido.NumeroPedido: integer;
+begin
+  Result := FNumeroPedido;
+end;
+
+//function TProduto_do_Pedido.PrecoVenda(Value: Currency): iProduto_do_Pedido;
+//begin
+//  Result := Self;
+//  FValorUnitario := Value;
+//end;
+
+function TProduto_do_Pedido.ValorUnitario: Currency;
+begin
+    Result := FValorUnitario;
+end;
+
+function TProduto_do_Pedido.Quantidade: Currency;
+begin
+  Result := FQuantidade;
+end;
+
+function TProduto_do_Pedido.Quantidade(Value: Currency): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FQuantidade := Value;
+end;
+
+function TProduto_do_Pedido.Total(Value: Currency): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FTotal := Value;
+end;
+
+function TProduto_do_Pedido.Total: Currency;
+begin
+  Result := FTotal;
+end;
+
+function TProduto_do_Pedido.ValorUnitario(Value: Currency): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FValorUnitario := Value;
+end;
+
+function TProduto_do_Pedido.NumeroPedido(Value: integer): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FNumeroPedido := Value;
+end;
+
+function TProduto_do_Pedido.Codigo(Value: integer): iProduto_do_Pedido;
+begin
+  Result := Self;
+  FCodigo := Value;
+end;
+
+function TProduto_do_Pedido.Codigo: integer;
+begin
+  Result := FCodigo;
+end;
+
+end.

@@ -2789,6 +2789,33 @@ object fmPrincipal: TfmPrincipal
         Height = 173
         ExplicitWidth = 200
         ExplicitHeight = 173
+        inherited pnCadastro: TPanel
+          Width = 170
+          Height = 143
+          ExplicitWidth = 170
+          ExplicitHeight = 143
+          inherited pnCabecalho: TPanel
+            Width = 168
+            ExplicitWidth = 168
+          end
+          inherited pnBotoesForm: TPanel
+            Top = 53
+            Width = 168
+            ExplicitTop = 53
+            ExplicitWidth = 168
+          end
+          inherited pbDadosPedido: TPanel
+            Width = 162
+            ExplicitWidth = 162
+            inherited DBGrid1: TDBGrid
+              Width = 162
+            end
+            inherited pnTituloItens: TPanel
+              Width = 162
+              ExplicitWidth = 162
+            end
+          end
+        end
         inherited pnConsulta: TPanel
           Width = 170
           Height = 143
@@ -2802,35 +2829,6 @@ object fmPrincipal: TfmPrincipal
             Width = 168
             ExplicitWidth = 168
           end
-        end
-        inherited pnCadastro: TPanel
-          Width = 170
-          Height = 143
-          ExplicitWidth = 170
-          ExplicitHeight = 143
-          inherited pnBotoesForm: TPanel
-            Top = 53
-            Width = 168
-            ExplicitWidth = 168
-          end
-          inherited pnCabecalho: TPanel
-            Width = 168
-          end
-          inherited pbDadosPedido: TPanel
-            Width = 162
-            inherited DBGrid1: TDBGrid
-              Width = 162
-            end
-            inherited pnTituloItens: TPanel
-              Width = 162
-              ExplicitWidth = 162
-            end
-          end
-        end
-      end
-      inherited FDPesquisaCliente: TFDQuery
-        inherited FDPesquisaClientecodigo: TFDAutoIncField
-          ReadOnly = True
         end
       end
     end

@@ -7,57 +7,8 @@
     end
   end
   inherited pnCentral: TPanel
-    inherited pnCadastro: TPanel
-      inherited pnBotoesForm: TPanel
-        Top = 472
-        Height = 89
-        Align = alBottom
-        BorderStyle = bsSingle
-        ExplicitTop = 472
-        ExplicitHeight = 89
-        DesignSize = (
-          1065
-          85)
-        object Label3: TLabel [0]
-          Left = 13
-          Top = 9
-          Width = 56
-          Height = 32
-          Caption = 'Total:'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -24
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lbTotalPedido: TLabel [1]
-          Left = 85
-          Top = 9
-          Width = 44
-          Height = 32
-          Caption = '0,00'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = 4210816
-          Font.Height = -24
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        inherited pn_Confirma: TPanel
-          Top = 9
-          ExplicitTop = 9
-        end
-        inherited pn_Cancela: TPanel
-          Top = 9
-          ExplicitTop = 9
-        end
-        inherited pn_Exclui: TPanel
-          Top = 9
-          ExplicitTop = 9
-        end
-      end
-      object pnCabecalho: TPanel
+    inherited pnCadastro: TPanel [0]
+      object pnCabecalho: TPanel [0]
         Left = 1
         Top = 1
         Width = 1069
@@ -126,6 +77,55 @@
           TabOrder = 2
         end
       end
+      inherited pnBotoesForm: TPanel
+        Top = 472
+        Height = 89
+        Align = alBottom
+        BorderStyle = bsSingle
+        ExplicitTop = 472
+        ExplicitHeight = 89
+        DesignSize = (
+          1065
+          85)
+        object Label3: TLabel [0]
+          Left = 13
+          Top = 9
+          Width = 56
+          Height = 32
+          Caption = 'Total:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -24
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lbTotalPedido: TLabel [1]
+          Left = 85
+          Top = 9
+          Width = 44
+          Height = 32
+          Caption = '0,00'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = 4210816
+          Font.Height = -24
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        inherited pn_Confirma: TPanel
+          Top = 9
+          ExplicitTop = 9
+        end
+        inherited pn_Cancela: TPanel
+          Top = 9
+          ExplicitTop = 9
+        end
+        inherited pn_Exclui: TPanel
+          Top = 9
+          ExplicitTop = 9
+        end
+      end
       object pbDadosPedido: TPanel
         AlignWithMargins = True
         Left = 4
@@ -175,18 +175,21 @@
             item
               Expanded = False
               FieldName = 'quantidade'
+              Title.Alignment = taRightJustify
               Title.Caption = 'Qauntidade'
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'vlrunitario'
+              Title.Alignment = taRightJustify
               Title.Caption = 'Valor Unit'#225'rio'
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'vlrtotal'
+              Title.Alignment = taRightJustify
               Title.Caption = 'Valor Total'
               Visible = True
             end>
@@ -294,8 +297,8 @@
         end
       end
       object pnConsultaCliente: TPanel
-        Left = 157
-        Top = 64
+        Left = 125
+        Top = 176
         Width = 753
         Height = 282
         Caption = 'pnConsultaCliente'
@@ -474,7 +477,7 @@
       end
       object pnInserirItens: TPanel
         Left = 184
-        Top = 21
+        Top = 77
         Width = 753
         Height = 282
         Caption = #39
@@ -686,6 +689,7 @@
           EditLabel.ParentFont = False
           TabOrder = 3
           Text = ''
+          OnEnter = edtQuantidadeEnter
           OnExit = edtQuantidadeExit
           OnKeyPress = edtQuantidadeKeyPress
         end
@@ -712,13 +716,14 @@
         end
       end
     end
-    inherited pnConsulta: TPanel
+    inherited pnConsulta: TPanel [1]
       inherited pn_imprimirRel: TPanel [0]
       end
       inherited pn_Importar: TPanel [1]
       end
       inherited gridPesquisa: TDBGrid [2]
         DataSource = dsConsulta
+        OnDblClick = gridPesquisaDblClick
         Columns = <
           item
             Expanded = False
@@ -742,7 +747,6 @@
             Visible = True
           end
           item
-            Alignment = taLeftJustify
             Expanded = False
             FieldName = 'valortotal'
             Title.Alignment = taRightJustify
@@ -757,6 +761,7 @@
         end
       end
       inherited pnResultado: TPanel [4]
+        Caption = 'Resultado  (clique duplo no registro para alter'#225'-lo)'
       end
       inherited fraPesquisa: TfraPesquisa [5]
         Height = 34

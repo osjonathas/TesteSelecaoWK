@@ -22,7 +22,9 @@ uses
   einterface.cliente in 'src\model\einterface.cliente.pas',
   model.cliente in 'src\model\model.cliente.pas',
   einterface.produto in 'src\model\einterface.produto.pas',
-  model.produto in 'src\model\model.produto.pas';
+  model.produto in 'src\model\model.produto.pas',
+  einterface.produto_do_pedido in 'src\model\einterface.produto_do_pedido.pas',
+  model.produto_do_pedido in 'src\model\model.produto_do_pedido.pas';
 
 {$R *.res}
 
