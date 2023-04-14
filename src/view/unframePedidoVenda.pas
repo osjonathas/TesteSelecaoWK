@@ -13,6 +13,8 @@ uses
   KrUtil, Vcl.NumberBox, einterface.produto;
 
 type
+  TCampoItem = (ciCodigo, ciQuantidade);
+
   TframePedidoVenda = class(TframeCadastroBase)
     FDConsultanumeropedido: TIntegerField;
     FDConsultadataemissao: TStringField;
@@ -29,7 +31,7 @@ type
     edtDataEmissao: TDateTimePicker;
     Label1: TLabel;
     Label2: TLabel;
-    pnIncluirMinisterio: TPanel;
+    pnIncluirItem: TPanel;
     btn_incluirItem: TSpeedButton;
     pnRemoverItem: TPanel;
     btn_RemoverItem: TSpeedButton;
@@ -108,6 +110,7 @@ type
     procedure ConfirmarInsercaoItem;
     procedure AtualizarTotalPedido;
     procedure RemoverItem;
+    function validaitem(aCampo:TCampoItem ):boolean;
   end;
 
 var
@@ -150,6 +153,9 @@ end;
 
 procedure TframePedidoVenda.CarregarDadosProduto;
 begin
+  if not validaItem(ciCodigo) then
+    exit;
+
   FProduto := TProduto
                .New
                .Codigo(StrToInt(edtCodigoProduto.Text))
@@ -227,6 +233,12 @@ end;
 
 procedure TframePedidoVenda.ConfirmarInsercaoItem;
 begin
+  if trim(edtCodigoProduto.Text) = EmptyStr then
+  begin
+    TFrmMensagem.ExibirMensagem('Informe um produto!', tmInfo);
+    exit;
+  end;
+
   if TfrmPergunta.Pergunta('Confirma inserir o ítem ao pedido?',tmpergunta) then
   begin
     FDMemTableItens.Open;
@@ -317,6 +329,10 @@ begin
     LimparDadosPedido;
     FInclusao := False;
     FEdicao   := False;
+
+    pnInserirItens.Visible := False;
+    pnConsultaCliente.Visible := False;
+
     pnConsulta.Visible := True;
     pnCadastro.Visible := False;
     pnConsulta.BringToFront;
@@ -433,6 +449,22 @@ begin
   pnConsultaCliente.Enabled := False;
   pnConsultaCliente.Visible := False;
   pnConsultaCliente.SendToBack;
+end;
+
+function TframePedidoVenda.validaitem(aCampo:TCampoItem ):boolean;
+begin
+  if (aCampo = ciCodigo) and (trim(edtCodigoProduto.Text) = EmptyStr) then
+  begin
+    TFrmMensagem.ExibirMensagem('Informe um produto!', tmInfo);
+    exit;
+  end;
+
+  if (aCampo = ciQuantidade) and ((trim(edtQuantidade.Text) = EmptyStr) or (trim(edtQuantidade.Text) = '0')) then
+  begin
+    TFrmMensagem.ExibirMensagem('Informe uma quantidade para o produto!', tmInfo);
+    exit;
+  end;
+  Result := True;
 end;
 
 procedure TframePedidoVenda.btn_incluirItemClick(Sender: TObject);

@@ -322,7 +322,7 @@
           DesignSize = (
             1063
             26)
-          object pnIncluirMinisterio: TPanel
+          object pnIncluirItem: TPanel
             Left = 13
             Top = 2
             Width = 101
@@ -763,9 +763,9 @@
           Width = 131
           Height = 28
           Color = clWhite
-          EditLabel.Width = 128
+          EditLabel.Width = 91
           EditLabel.Height = 20
-          EditLabel.Caption = 'C'#243'digo do Produto'
+          EditLabel.Caption = 'Valor Unit'#225'rio'
           EditLabel.Color = clBlack
           EditLabel.Font.Charset = ANSI_CHARSET
           EditLabel.Font.Color = clBlack

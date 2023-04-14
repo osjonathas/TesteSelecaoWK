@@ -251,7 +251,6 @@ begin
       aTransacao.Connection := Connection.FDConnection;
       aQry.Connection := Connection.FDConnection;
       aTransacao.StartTransaction;
-      FormatSettings.DecimalSeparator := '.';
 
       aQry.Close;
       aQry.Sql.Clear;

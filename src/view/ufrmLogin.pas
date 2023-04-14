@@ -28,6 +28,7 @@ type
     pnInformativo: TPanel;
     lbTitulo: TLabel;
     lbVersao: TLabel;
+    Label3: TLabel;
     procedure FormShow(Sender: TObject);
     procedure btFecharClick(Sender: TObject);
     procedure btConfirmarClick(Sender: TObject);
@@ -130,7 +131,13 @@ begin
 
   if aOpcaoValida = ovSenha then
   begin
-    if (Assigned(FUsuario) and (UpperCase(edtSenha.Text) <> UpperCase(FUsuario.Senha)))then
+    if not Assigned(FUsuario) then
+    begin
+      TFrmMensagem.ExibirMensagem('Usuário inválido.', tmPare);
+      Exit;
+    end;
+
+    if (UpperCase(edtSenha.Text) <> UpperCase(FUsuario.Senha)) then
     begin
       TFrmMensagem.ExibirMensagem('Senha inválida.', tmPare);
       Exit;
