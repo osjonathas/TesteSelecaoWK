@@ -336,6 +336,7 @@ begin
     pnConsulta.Visible := True;
     pnCadastro.Visible := False;
     pnConsulta.BringToFront;
+    ExecutarPesquisa;
     inherited;
   end;
 end;
@@ -419,6 +420,7 @@ begin
         FContPedVenda.AlterarPedidoVenda(FDMemTableItens);
 
       TFrmMensagem.ExibirMensagem('Pedido gravado com sucesso!', tmInfo);
+      ExecutarPesquisa;
       inherited;
 
     finally

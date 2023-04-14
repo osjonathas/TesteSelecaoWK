@@ -38,7 +38,6 @@
             Visible = True
           end
           item
-            Alignment = taLeftJustify
             Expanded = False
             FieldName = 'valortotal'
             Title.Alignment = taRightJustify
@@ -115,56 +114,7 @@
       end
     end
     inherited pnCadastro: TPanel
-      inherited pnBotoesForm: TPanel
-        Top = 472
-        Height = 89
-        Align = alBottom
-        BorderStyle = bsSingle
-        ExplicitTop = 472
-        ExplicitHeight = 89
-        DesignSize = (
-          1065
-          85)
-        object Label3: TLabel [0]
-          Left = 13
-          Top = 9
-          Width = 56
-          Height = 32
-          Caption = 'Total:'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -24
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lbTotalPedido: TLabel [1]
-          Left = 85
-          Top = 9
-          Width = 44
-          Height = 32
-          Caption = '0,00'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = 4210816
-          Font.Height = -24
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-        end
-        inherited pn_Confirma: TPanel
-          Top = 9
-          ExplicitTop = 9
-        end
-        inherited pn_Cancela: TPanel
-          Top = 9
-          ExplicitTop = 9
-        end
-        inherited pn_Exclui: TPanel
-          Top = 9
-          ExplicitTop = 9
-        end
-      end
-      object pnCabecalho: TPanel
+      object pnCabecalho: TPanel [0]
         Left = 1
         Top = 1
         Width = 1069
@@ -233,6 +183,55 @@
           TabOrder = 2
         end
       end
+      inherited pnBotoesForm: TPanel
+        Top = 472
+        Height = 89
+        Align = alBottom
+        BorderStyle = bsSingle
+        ExplicitTop = 472
+        ExplicitHeight = 89
+        DesignSize = (
+          1065
+          85)
+        object Label3: TLabel [0]
+          Left = 13
+          Top = 9
+          Width = 56
+          Height = 32
+          Caption = 'Total:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -24
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lbTotalPedido: TLabel [1]
+          Left = 85
+          Top = 9
+          Width = 44
+          Height = 32
+          Caption = '0,00'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = 4210816
+          Font.Height = -24
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        inherited pn_Confirma: TPanel
+          Top = 9
+          ExplicitTop = 9
+        end
+        inherited pn_Cancela: TPanel
+          Top = 9
+          ExplicitTop = 9
+        end
+        inherited pn_Exclui: TPanel
+          Top = 9
+          ExplicitTop = 9
+        end
+      end
       object pbDadosPedido: TPanel
         AlignWithMargins = True
         Left = 4
@@ -282,18 +281,21 @@
             item
               Expanded = False
               FieldName = 'quantidade'
+              Title.Alignment = taRightJustify
               Title.Caption = 'Qauntidade'
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'vlrunitario'
+              Title.Alignment = taRightJustify
               Title.Caption = 'Valor Unit'#225'rio'
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'vlrtotal'
+              Title.Alignment = taRightJustify
               Title.Caption = 'Valor Total'
               Visible = True
             end>
@@ -305,7 +307,9 @@
           Height = 26
           Align = alTop
           BevelOuter = bvNone
-          Caption = #205'tens do Pedido'
+          Caption = 
+            #205'tens do Pedido  (Obs: para alterar o '#237'tem exclua-o e insira nov' +
+            'amente)'
           Color = 12615680
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
@@ -318,7 +322,7 @@
           DesignSize = (
             1063
             26)
-          object pnIncluirMinisterio: TPanel
+          object pnIncluirItem: TPanel
             Left = 13
             Top = 2
             Width = 101
@@ -581,7 +585,7 @@
       end
       object pnInserirItens: TPanel
         Left = 184
-        Top = 77
+        Top = 157
         Width = 753
         Height = 282
         Caption = #39
@@ -759,9 +763,9 @@
           Width = 131
           Height = 28
           Color = clWhite
-          EditLabel.Width = 128
+          EditLabel.Width = 91
           EditLabel.Height = 20
-          EditLabel.Caption = 'C'#243'digo do Produto'
+          EditLabel.Caption = 'Valor Unit'#225'rio'
           EditLabel.Color = clBlack
           EditLabel.Font.Charset = ANSI_CHARSET
           EditLabel.Font.Color = clBlack
@@ -814,6 +818,7 @@
           EditLabel.Font.Style = []
           EditLabel.ParentColor = False
           EditLabel.ParentFont = False
+          ReadOnly = True
           TabOrder = 4
           Text = ''
           OnKeyPress = edtValorTotalKeyPress

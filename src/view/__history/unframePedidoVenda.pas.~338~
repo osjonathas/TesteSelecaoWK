@@ -31,7 +31,7 @@ type
     edtDataEmissao: TDateTimePicker;
     Label1: TLabel;
     Label2: TLabel;
-    pnIncluirMinisterio: TPanel;
+    pnIncluirItem: TPanel;
     btn_incluirItem: TSpeedButton;
     pnRemoverItem: TPanel;
     btn_RemoverItem: TSpeedButton;
@@ -153,11 +153,8 @@ end;
 
 procedure TframePedidoVenda.CarregarDadosProduto;
 begin
-  if validaItem(ciCodigo) then
-  begin
-    TFrmMensagem.ExibirMensagem('Informe um produto!', tmInfo);
+  if not validaItem(ciCodigo) then
     exit;
-  end;
 
   FProduto := TProduto
                .New
@@ -332,9 +329,14 @@ begin
     LimparDadosPedido;
     FInclusao := False;
     FEdicao   := False;
+
+    pnInserirItens.Visible := False;
+    pnConsultaCliente.Visible := False;
+
     pnConsulta.Visible := True;
     pnCadastro.Visible := False;
     pnConsulta.BringToFront;
+    ExecutarPesquisa;
     inherited;
   end;
 end;
@@ -452,7 +454,6 @@ end;
 
 function TframePedidoVenda.validaitem(aCampo:TCampoItem ):boolean;
 begin
-
   if (aCampo = ciCodigo) and (trim(edtCodigoProduto.Text) = EmptyStr) then
   begin
     TFrmMensagem.ExibirMensagem('Informe um produto!', tmInfo);
@@ -464,7 +465,6 @@ begin
     TFrmMensagem.ExibirMensagem('Informe uma quantidade para o produto!', tmInfo);
     exit;
   end;
-
   Result := True;
 end;
 

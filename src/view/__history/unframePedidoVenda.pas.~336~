@@ -31,7 +31,7 @@ type
     edtDataEmissao: TDateTimePicker;
     Label1: TLabel;
     Label2: TLabel;
-    pnIncluirMinisterio: TPanel;
+    pnIncluirItem: TPanel;
     btn_incluirItem: TSpeedButton;
     pnRemoverItem: TPanel;
     btn_RemoverItem: TSpeedButton;
@@ -85,6 +85,7 @@ type
     procedure btn_RemoverItemClick(Sender: TObject);
     procedure gridPesquisaDblClick(Sender: TObject);
     procedure edtQuantidadeEnter(Sender: TObject);
+    procedure pnConsultaEnter(Sender: TObject);
   private
     { Private declarations }
   public
@@ -154,10 +155,7 @@ end;
 procedure TframePedidoVenda.CarregarDadosProduto;
 begin
   if not validaItem(ciCodigo) then
-  begin
-    TFrmMensagem.ExibirMensagem('Informe um produto!', tmInfo);
     exit;
-  end;
 
   FProduto := TProduto
                .New
@@ -332,6 +330,10 @@ begin
     LimparDadosPedido;
     FInclusao := False;
     FEdicao   := False;
+
+    pnInserirItens.Visible := False;
+    pnConsultaCliente.Visible := False;
+
     pnConsulta.Visible := True;
     pnCadastro.Visible := False;
     pnConsulta.BringToFront;
@@ -426,6 +428,12 @@ begin
   end;
 end;
 
+procedure TframePedidoVenda.pnConsultaEnter(Sender: TObject);
+begin
+  inherited;
+  fraPesquisa.btPesq.click;
+end;
+
 procedure TframePedidoVenda.RemoverItem;
 begin
   if not FDMemTableItens.IsEmpty then
@@ -452,7 +460,6 @@ end;
 
 function TframePedidoVenda.validaitem(aCampo:TCampoItem ):boolean;
 begin
-
   if (aCampo = ciCodigo) and (trim(edtCodigoProduto.Text) = EmptyStr) then
   begin
     TFrmMensagem.ExibirMensagem('Informe um produto!', tmInfo);
@@ -464,7 +471,6 @@ begin
     TFrmMensagem.ExibirMensagem('Informe uma quantidade para o produto!', tmInfo);
     exit;
   end;
-
   Result := True;
 end;
 
